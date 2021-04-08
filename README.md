@@ -67,9 +67,14 @@ In a scanning period of 10 minutes, an esp32 scanner without advertising counted
 
 ### d)
 
-In a scanning period of 15 minutes, a bluedroid scanner registered 864 ble advertising packages while a nimble scanner only registered 128. Both scanners were configured with similar scan settings. However, nimble can be tewaked to scan faster. With these tewaked settings, simultaneously advertising seems to make a little difference. In a 15 minute period of scanning an esp32 advertiser with an advertising period of 100-200 ms, a nimble scanner without advertising counted 4916 advertising packages while a nimble scanner with an advertising period of 100-200 ms counted 4644 advertising packages.<br>
+In a scanning period of 15 minutes, a bluedroid scanner registered 864 ble advertising packages while a nimble scanner only registered 128. Both scanners were configured with similar scan settings\*. However, nimble can be tewaked to scan faster. With these tewaked settings, simultaneously advertising seems to make a little difference. In a 15 minute period of scanning an esp32 advertiser with an advertising period of 100-200 ms, a nimble scanner without advertising counted 4916 advertising packages while a nimble scanner with an advertising period of 100-200 ms counted 4644 advertising packages.<br>
 A nimble scanner with an advertising period of 100-200 ms vs one with 9900-10000 ms counted 3149 vs 3250 advertising packages within approx. 10 minutes.<br>
 A nimble scanner with an advertising period of 9900-10000 ms vs one without advertising counted 3264 vs 3305 advertising packages within 10 minutes.
+
+\*similar scan settings:<br>
+nimble: `filter_duplicates = 0; p ssive = 1; itvl = 10 * 10 / 0.625; window = 10 / 0.625; filter_policy = 0; limited = 0;`<br>
+bluedroid: `scan_type = BLE_SCAN_TYPE_PASSIVE, scan_filter_policy = BLE_SCAN_FILTER_ALLOW_ALL, scan_duplicate = BLE_SCAN_DUPLICATE_DISABLE, scan_interval = 10 * 10 / 0.625; scan_window = 10 / 0.625`;<br>
+Note that scan interval and scan window have to be given in 0.625 ms units in nimble and bluedroid.
 
 ## Notes
 
