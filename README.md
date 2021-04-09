@@ -45,7 +45,7 @@ To show the correct filter message in terminal, comment in the first `printf(...
 ## Setup
 
 * A esp32 is running GAP advertising with an advertising period of 1000-1100 ms.
-* Two esp32 are running a BLE scanner. They only count advertising packages from the esp32 mentioned above. Other advertising packages from other devices will not be counted. The number of counted advertising packages are compared for different scanning setups:
+* Two esp32 are running a BLE scanner. They are located on both sides next to the advertising esp32 in a distance of approx. 5 cm. They are not shielded from other RF. They only count advertising packages from the esp32 mentioned above.Other advertising packages from other devices will not be counted. However, other packages will be registered. Filtering takes place after they are registered. The number of counted advertising packages are compared for different scanning setups:
     + a) esp32 scanner with advertising (period 100-200 ms) vs esp32 scanner with advertising (period 9900-10000 ms)
     + b) esp32 scanner with advertising (period 100-200 ms) vs esp32 scanner without advertising
     + c) esp32 scanner without advertising vs. `hcitool lescan` on linux machine
